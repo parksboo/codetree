@@ -37,17 +37,18 @@ def dfs(r,c,n):
 def cal_score(linenum):
     line = humanlines[linenum]
     head, tail, length = metadata[linenum]
-    if not line[(head + 1)%len(line)].is_human:
-        dir = -1
-    else:
+    if line[(head + 1)%len(line)].role ==REST:
         dir = 1
+    else:
+        dir = -1
     curr = head
     num = 1
-
     while line[curr].is_human:
         line[curr].score = num ** 2
+        if curr==tail: break
         num += 1
         curr = (curr + dir) % len(line)
+
 def reverse_line(linenum):
     line = humanlines[linenum]
     head,tail, length=metadata[linenum]
@@ -143,16 +144,18 @@ for _ in range(tc):
     for round in range(k):
         move_line()
         throw_ball(round)
+        print('round',round)
+        k=1
+        for line in humanlines:
+            print(f'line : {k}')
+            print(metadata[k-1])
+            k+=1
+            for human in line:
+                print(f'{human.r} {human.c} : {human.role} , {human.score}')
+
     print(score)
 
-        # print(round)
-        # k=1
-        # for line in humanlines:
-        #     print(f'line : {k}')
-        #     print(metadata[k-1])
-        #     k+=1
-        #     for human in line:
-        #         print(f'{human.r} {human.c} : {human.role} , {human.score}')
+
 
 
 
