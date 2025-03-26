@@ -144,14 +144,14 @@ for _ in range(tc):
     for round in range(k):
         move_line()
         throw_ball(round)
-        print('round',round)
-        k=1
-        for line in humanlines:
-            print(f'line : {k}')
-            print(metadata[k-1])
-            k+=1
-            for human in line:
-                print(f'{human.r} {human.c} : {human.role} , {human.score}')
+        # print('round',round)
+        # k=1
+        # for line in humanlines:
+        #     print(f'line : {k}')
+        #     print(metadata[k-1])
+        #     k+=1
+        #     for human in line:
+        #         print(f'{human.r} {human.c} : {human.role} , {human.score}')
 
     print(score)
 
