@@ -1,5 +1,4 @@
 from collections import deque
-import copy
 # 상 좌 우 하
 dr = [-1,0,0,1]
 dc = [0,-1,1,0]
@@ -28,6 +27,7 @@ def bfs(start,dest):
                 q.append((nr,nc,dist+1))
                 if (nr,nc) == dest:
                     return dist+1, visited
+    return 1024, visited
 
 def backtrack(pathmap, goal):
     path=[]
@@ -100,3 +100,9 @@ for _ in range(tc):
         if not cnt:
             print(minute)
             break
+
+
+
+
+
+
