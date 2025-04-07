@@ -34,30 +34,17 @@ def det_sqr():
     minlen=n
     for r in range(n):
         for c in range(n):
-            side_r = goal[0] - r
-            side_c = goal[1] - c
-            # p가 g 오른쪽 아래
-            if side_r<=0 and side_c<=0:
-                l_r = goal[0]
-                l_c = goal[1]
-            # p가 g 왼쪽 아래
-            elif side_r <= 0 and side_c >= 0:
-                l_r=goal[0]
-                l_c=c
-            # p가 g 왼쪽 위
-            elif side_r >= 0 and side_c >= 0:
-                l_r = r
-                l_c = c
-            # p가 g 오른쪽 위
-            elif side_r >= 0 and side_c <= 0:
-                l_r = r
-                l_c = goal[1]
-            length = max(abs(side_r), abs(side_c))
-            if length<minlen:
-                for p in ppl:
-                    if not p.escape and l_r<=p.r<=l_r+length and l_c<=p.c<=l_c+length:
-                        minlen = length
-                        minrc = [l_r,l_c]
+            for l in range(1,n):
+                if r<=goal[0]<=r+l and c<=goal[1]<=c+l:
+                    if minlen<=l:
+                        break
+                    for p in ppl:
+                        if not p.escape and r<=p.r<=r+l and c<=p.c<=c+l and minlen>l:
+                            minlen=l
+                            minrc=[r,c]
+                            break
+
+
     return minrc, minlen
 def rotate():
     global goal
