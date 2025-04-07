@@ -63,6 +63,7 @@ def rotate():
     global goal
     # find sqr
     min_pos,min_len = det_sqr()
+
     tmp=[[0]*n for _ in range(n)]
     mc = min_pos[1] + min_len
     goalmoved=False
@@ -101,15 +102,15 @@ for _ in range(tc):
 
     for i in range(k):
         moved=move()
-        if not moved:
-            all_es=True
-            for p in ppl:
-                if not p.escape:
-                    all_es=False
-            if all_es: break
+        all_es=True
+        for p in ppl:
+            if not p.escape:
+                all_es=False
+        if all_es: break
         rotate()
     score=0
     for p in ppl:
         score+=p.dist
     print(score)
     print(*map(lambda x:x+1,goal))
+
