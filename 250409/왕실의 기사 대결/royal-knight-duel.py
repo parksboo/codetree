@@ -24,7 +24,7 @@ class Knight:
             return
         for r in range(self.r +dr[d], self.r + self.h+dr[d] + 1):
             for c in range(self.c+dc[d], self.c + self.w +dc[d] + 1):
-                if mat[r][c]==2 or not in_range(r,c):
+                if not in_range(r,c) or mat[r][c]==2:
                     enable= False
                     return
                 elif mat_k[r][c]==0 or mat_k[r][c]==self.n:
@@ -35,7 +35,7 @@ class Knight:
     def move(self,d):
         global mat_nk, mat_k,enable
         mat_nk = [[0] * L for _ in range(L)]
-        if mat[self.r][self.c] == 2 or not in_range(self.r,self.c):
+        if not in_range(self.r,self.c) or mat[self.r][self.c] == 2:
             enable = False
         else:
             self.scan(d)
@@ -67,8 +67,7 @@ class Knight:
 # file = open('input.txt','r')
 # input = file.readline
 # tc= int(input())
-tc=1
-for _ in range(tc):
+for _ in range(1):
     L,N,Q = map(int, input().split())
     knights=[Knight(0,0,0,0,0,0)]
     mat = [list(map(int, input().split())) for _ in range(L)]
