@@ -87,7 +87,7 @@ def drop(pos):
     for dr in [1,0,-1]:
         for dc in [1,0,-1]:
            nr,nc = (r+dr)%n, (c+dc)%m
-           if mat[nr][nc]:
+           if mat[nr][nc] and not ([nr,nc] == wkpos):
                mat[nr][nc]= max(mat[nr][nc] - (deal//2), 0)
                attacked[nr][nc]=True
 def laser(route):
@@ -112,7 +112,8 @@ def attack(wkpos, strpos):
 # file = open('input.txt','r')
 # input= file.readline
 # tc= int(input())
-for _ in range(1):
+tc=1
+for _ in range(tc):
     n,m,k = map(int, input().split())
     handi = n+m
     mat = [list(map(int, input().split()))for _ in range(n)]
