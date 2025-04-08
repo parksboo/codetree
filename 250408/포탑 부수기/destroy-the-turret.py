@@ -125,6 +125,8 @@ for _ in range(tc):
         atkhistory[wkpos[0]][wkpos[1]]= i
         deal = wkatk
         strpos, stratk= choice_strong()
+        if strpos == wkpos:
+            break
         mat[wkpos[0]][wkpos[1]] += n + m
         attacked[wkpos[0]][wkpos[1]]=True
         attack(wkpos, strpos)
