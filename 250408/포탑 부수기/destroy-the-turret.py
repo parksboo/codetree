@@ -44,7 +44,7 @@ def choice_strong():
                         if c < maxpos[1]:
                             maxpos = [r, c]
     return maxpos, maxatk
-def up_atk(active_pos):
+def up_atk():
     for r in range(n):
         for c in range(m):
             if mat[r][c] and not attacked[r][c]:
@@ -86,10 +86,11 @@ def drop(pos):
     attacked[r][c] = True
     for dr in [1,0,-1]:
         for dc in [1,0,-1]:
-           nr,nc = (r+dr)%n, (c+dc)%m
-           if mat[nr][nc] and not ([nr,nc] == wkpos):
-               mat[nr][nc]= max(mat[nr][nc] - (deal//2), 0)
-               attacked[nr][nc]=True
+            if dr==0 and dc==0: continue
+            nr,nc = (r+dr)%n, (c+dc)%m
+            if mat[nr][nc] and not ([nr,nc] == wkpos):
+                mat[nr][nc]= max(mat[nr][nc] - (deal//2), 0)
+                attacked[nr][nc]=True
 def laser(route):
     for r,c in route[1:-1]:
         mat[r][c]= max(mat[r][c] - (deal//2), 0)
@@ -128,7 +129,8 @@ for _ in range(tc):
         attacked[wkpos[0]][wkpos[1]]=True
         attack(wkpos, strpos)
 
-        up_atk([wkpos, strpos])
+        up_atk()
         reset_atked()
+        
     dump, atk = choice_strong()
     print(atk)
