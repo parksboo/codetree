@@ -19,7 +19,8 @@ class Knight:
                 mat[r][c] = self.n
     def scan(self,d):
         global enable
-        scanmove.append(mat_k[self.r][self.c])
+        if mat_k[self.r][self.c] not in scanmove:
+            scanmove.append(mat_k[self.r][self.c])
         if not enable:
             return
         for r in range(self.r +dr[d], self.r + self.h+dr[d] + 1):
