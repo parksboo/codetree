@@ -31,12 +31,12 @@ class Golem:
 
     def insert(self):
         fail = False
-        if mat[self.r + 1][self.c] or self.c>C-2 or self.c<1:
+        if self.c>C-2 or self.c<1:
             fail = self.gol(1)
             if fail:
                 fail = self.gor(1)
         else:
-            while self.r<2 and not fail:
+            while self.r<3 and not fail:
                 if self.godown():
                     fail = self.gol(1)
                     if fail:
