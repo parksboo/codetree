@@ -31,17 +31,16 @@ class Golem:
 
     def insert(self):
         fail = False
-        if mat[self.r + 1][self.c]:
+        if mat[self.r + 1][self.c] or self.c>C-2 or self.c<1:
             fail = self.gol(1)
             if fail:
                 fail = self.gor(1)
         else:
-            self.r+=1
-        while self.r<2 and not fail:
-            if self.godown():
-                fail = self.gol(1)
-                if fail:
-                    fail = self.gor(1)
+            while self.r<2 and not fail:
+                if self.godown():
+                    fail = self.gol(1)
+                    if fail:
+                        fail = self.gor(1)
 
         return fail
 
@@ -118,7 +117,10 @@ class Golem:
                     maxr = max(maxr, nr)
         return maxr
 
-
+def printmat():
+    for matl in mat:
+        print(*matl)
+    print('')
 
 # file = open('input.txt','r')
 # input= file.readline
@@ -137,6 +139,7 @@ for _ in range(1):
         fail = golem.move()
         if not fail:
             score +=golem.fill()
+        # printmat()
 
     print(score)
 
