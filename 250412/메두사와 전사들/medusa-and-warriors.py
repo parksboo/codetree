@@ -101,12 +101,16 @@ def golr(r,c,maind, seen, blocked, subd):
     nr, nc = r, c
     while in_range(nr,nc):
         if not blocked[r][nc]:
+            gone=False
             for w in warriors:
                 if w.r == r and w.c == nc:
                     if in_range(r,nc+maind):
                         blocked[r][nc+maind] = True
-            if in_range(r,nc+maind) and blocked[r][nc+maind] and subd:
-                mkblocklr(r, nc, maind, subd, blocked)
+                        if not gone and subd:
+                            mkblocklr(r, nc, maind, subd, blocked)
+                            gone=True
+
+
             seen[r][nc] = True
         else:
             break
@@ -115,12 +119,14 @@ def goud(r,c,maind, seen, blocked, subd):
     nr, nc = r, c
     while in_range(nr,nc):
         if not blocked[nr][c]:
+            gone=False
             for w in warriors:
                 if w.r == nr and w.c == c:
                     if in_range(nr+maind, c):
                         blocked[nr+maind][c] = True
-            if in_range(nr+maind,c) and blocked[nr+maind][c] and subd:
-                mkblockud(nr, nc, maind, subd, blocked)
+                        if not gone and subd:
+                            mkblockud(nr, nc, maind, subd, blocked)
+                            gone=True
             seen[nr][c] = True
         else:
             break
