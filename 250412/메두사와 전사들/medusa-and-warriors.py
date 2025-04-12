@@ -21,11 +21,26 @@ class Warrior:
         self.r=r
         self.c=c
         self.stone=False
-    def move(self):
+    def move1(self):
         moved=False
         mindist=dist(self.r,self.c ,r,c)
         bestr,bestc = self.r, self.c
         for d in range(4):
+            nr,nc=self.r+dr[d],self.c+dc[d]
+            if in_range(nr,nc) and not seen[nr][nc]:
+                currdist= dist(nr,nc,r,c)
+                if currdist<mindist:
+                    mindist=currdist
+                    bestr, bestc = nr,nc
+                    moved=True
+        self.r=bestr
+        self.c=bestc
+        return moved
+    def move2(self):
+        moved=False
+        mindist=dist(self.r,self.c ,r,c)
+        bestr,bestc = self.r, self.c
+        for d in [2,3,0,1]:
             nr,nc=self.r+dr[d],self.c+dc[d]
             if in_range(nr,nc) and not seen[nr][nc]:
                 currdist= dist(nr,nc,r,c)
@@ -204,10 +219,10 @@ for _ in range(1):
         move =0
         for w in warriors:
             if not w.stone:
-                moved = w.move()
+                moved = w.move1()
                 if moved:
                     move+=1
-                moved = w.move()
+                moved = w.move2()
                 if moved:
                     move+=1
         # 4 전사 공격
